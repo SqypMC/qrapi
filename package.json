@@ -1,0 +1,39 @@
+{
+  "name": "qr-api",
+  "version": "1.0.0",
+  "description": "Free QR Code Generator API - Public, no-auth, no-cost QR generation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "qr-code",
+    "api",
+    "vercel",
+    "serverless",
+    "free"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "qrcode": "^1.5.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.6",
+    "@types/qrcode": "^1.5.5",
+    "@vercel/node": "^27.0.2",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

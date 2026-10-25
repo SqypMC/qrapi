@@ -1,0 +1,357 @@
+# Example HTTP Requests for QR Code Generator API
+
+## Base URL
+Replace with your deployed URL:
+- Local: `http://localhost:3000`
+- Production: `https://qr.tomaseu.pw`
+
+---
+
+## Basic QR Generation
+
+### Simple text
+```bash
+curl "https://qr.tomaseu.pw/qr?text=Hello%20World" --output qr.png
+```
+
+### URL (properly encoded)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=https%3A%2F%2Fgoogle.com" --output qr.png
+```
+
+### URL with custom size
+```bash
+curl "https://qr.tomaseu.pw/qr?text=https%3A%2F%2Fexample.com&size=512" --output qr.png
+```
+
+---
+
+## Format Options
+
+### SVG output
+```bash
+curl "https://qr.tomaseu.pw/qr?text=https://example.com&format=svg" --output qr.svg
+```
+
+### PNG output (default)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=https://example.com&format=png" --output qr.png
+```
+
+---
+
+## Error Correction Levels
+
+### Low (7%) - smallest QR
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&errorCorrectionLevel=L" --output qr.png
+```
+
+### Medium (15%) - default
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&errorCorrectionLevel=M" --output qr.png
+```
+
+### Quartile (25%)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&errorCorrectionLevel=Q" --output qr.png
+```
+
+### High (30%) - most robust
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&errorCorrectionLevel=H" --output qr.png
+```
+
+### Using ecl alias
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&ecl=H" --output qr.png
+```
+
+---
+
+## Margin / Quiet Zone
+
+### No margin (minimal quiet zone)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&margin=0" --output qr.png
+```
+
+### Default margin (4 modules)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&margin=4" --output qr.png
+```
+
+### Large margin
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&margin=10" --output qr.png
+```
+
+---
+
+## Custom Colors
+
+### Dark blue on light gray
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&color.dark=%231a1a2e&color.light=%23f5f5f5" --output qr.png
+```
+
+### Red on white
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&color.dark=%23ff0000" --output qr.png
+```
+
+### White on black (inverted)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&color.dark=%23ffffff&color.light=%23000000" --output qr.png
+```
+
+### Green on yellow
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&color.dark=%2300ff00&color.light=%23ffff00" --output qr.png
+```
+
+### Using aliases
+```bash
+curl "https://qr.tomaseu.pw/qr?text=data&dark=%23123456&light=%23abcdef" --output qr.png
+```
+
+---
+
+## Special Data Types
+
+### Email (mailto:)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=mailto%3Atest%40example.com" --output qr.png
+```
+
+### Email with subject/body
+```bash
+curl "https://qr.tomaseu.pw/qr?text=mailto%3Atest%40example.com%3Fsubject%3DHello%26body%3DTest%20message" --output qr.png
+```
+
+### Phone (tel:)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=tel%3A%2B421900123456" --output qr.png
+```
+
+### SMS
+```bash
+curl "https://qr.tomaseu.pw/qr?text=sms%3A%2B421900123456" --output qr.png
+```
+
+### WiFi (Android/iOS)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=WIFI%3AT%3AWPA%3BS%3AMyNetwork%3BP%3Apassword123%3B%3B" --output qr.png
+```
+
+### vCard
+```bash
+curl "https://qr.tomaseu.pw/qr?text=BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AJohn%20Doe%0ATEL%3A%2B421900123456%0AEMAIL%3Ajohn%40example.com%0AEND%3AVCARD" --output qr.png
+```
+
+### Geo location
+```bash
+curl "https://qr.tomaseu.pw/qr?text=geo%3A48.1482%2C17.1067" --output qr.png
+```
+
+---
+
+## Unicode & Special Characters
+
+### Unicode text
+```bash
+curl "https://qr.tomaseu.pw/qr?text=Hello%20%E4%B8%96%E7%95%8C%20%F0%9F%8C%8D" --output qr.png
+```
+
+### Emoji
+```bash
+curl "https://qr.tomaseu.pw/qr?text=%F0%9F%98%80%F0%9F%98%83%F0%9F%98%84" --output qr.png
+```
+
+### Special URL characters
+```bash
+curl "https://qr.tomaseu.pw/qr?text=https%3A%2F%2Fexample.com%2Fpath%3Fquery%3Dvalue%26other%3D123%23fragment" --output qr.png
+```
+
+---
+
+## Combined Options
+
+### Maximum customization
+```bash
+curl "https://qr.tomaseu.pw/qr?text=https://example.com&size=512&format=png&errorCorrectionLevel=H&margin=2&color.dark=%231a1a2e&color.light=%23f5f5f5" --output qr.png
+```
+
+### Large SVG with high error correction
+```bash
+curl "https://qr.tomaseu.pw/qr?text=complex-data&size=1024&format=svg&errorCorrectionLevel=H" --output qr.svg
+```
+
+---
+
+## Health & Info Endpoints
+
+### Health check
+```bash
+curl "https://qr.tomaseu.pw/health"
+```
+
+### API documentation (HTML)
+```bash
+curl "https://qr.tomaseu.pw/"
+```
+
+### API documentation (JSON)
+```bash
+curl -H "Accept: application/json" "https://qr.tomaseu.pw/"
+```
+
+---
+
+## Error Cases (for testing)
+
+### Missing text parameter
+```bash
+curl "https://qr.tomaseu.pw/qr"
+# Expected: 400 Bad Request
+```
+
+### Empty text
+```bash
+curl "https://qr.tomaseu.pw/qr?text="
+# Expected: 400 Bad Request
+```
+
+### Invalid size (too small)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=test&size=32"
+# Expected: 400 Bad Request
+```
+
+### Invalid size (too large)
+```bash
+curl "https://qr.tomaseu.pw/qr?text=test&size=2048"
+# Expected: 400 Bad Request
+```
+
+### Invalid format
+```bash
+curl "https://qr.tomaseu.pw/qr?text=test&format=jpg"
+# Expected: 400 Bad Request
+```
+
+### Invalid error correction
+```bash
+curl "https://qr.tomaseu.pw/qr?text=test&errorCorrectionLevel=X"
+# Expected: 400 Bad Request
+```
+
+### Invalid color
+```bash
+curl "https://qr.tomaseu.pw/qr?text=test&color.dark=red"
+# Expected: 400 Bad Request
+```
+
+### Same foreground/background
+```bash
+curl "https://qr.tomaseu.pw/qr?text=test&color.dark=%23ff0000&color.light=%23ff0000"
+# Expected: 400 Bad Request
+```
+
+### Oversized input
+```bash
+# Generate 3000+ char string
+curl "https://qr.tomaseu.pw/qr?text=$(python3 -c 'print("a"*3000)')"
+# Expected: 400 Bad Request
+```
+
+### Wrong HTTP method
+```bash
+curl -X POST "https://qr.tomaseu.pw/qr?text=test"
+# Expected: 405 Method Not Allowed
+```
+
+---
+
+## Browser Testing
+
+### Direct image embed
+```html
+<img src="https://qr.tomaseu.pw/qr?text=https://google.com" alt="Google QR">
+```
+
+### With custom size
+```html
+<img src="https://qr.tomaseu.pw/qr?text=Hello%20World&size=300" alt="Hello QR" width="300" height="300">
+```
+
+### SVG embed
+```html
+<img src="https://qr.tomaseu.pw/qr?text=Test&format=svg" alt="Test QR">
+```
+
+---
+
+## Cache Testing
+
+### First request (cache miss)
+```bash
+curl -v "https://qr.tomaseu.pw/qr?text=cache-test-123" --output /dev/null
+# Look for: X-Vercel-Cache: MISS
+```
+
+### Repeat request (cache hit)
+```bash
+curl -v "https://qr.tomaseu.pw/qr?text=cache-test-123" --output /dev/null
+# Look for: X-Vercel-Cache: HIT
+```
+
+### Check cache headers
+```bash
+curl -I "https://qr.tomaseu.pw/qr?text=cache-test-123"
+# Should show: Cache-Control: public, s-maxage=86400, stale-while-revalidate=604800
+```
+
+---
+
+## QR Code Verification
+
+### Using zbarimg (Linux)
+```bash
+# Install: sudo apt install zbar-tools
+curl "https://qr.tomaseu.pw/qr?text=https://google.com" --output test.png
+zbarimg test.png
+```
+
+### Using Python
+```python
+# pip install pyzbar pillow
+from pyzbar import pyzbar
+from PIL import Image
+
+img = Image.open("test.png")
+decoded = pyzbar.decode(img)
+print(decoded[0].data.decode())
+```
+
+### Online verification
+Upload generated PNG to: https://zxing.org/w/decode.jspx
+
+---
+
+## Load Testing (lightweight)
+
+### Quick concurrent test
+```bash
+for i in {1..10}; do
+  curl -s "https://qr.tomaseu.pw/qr?text=load-test-$i" --output /dev/null &
+done
+wait
+```
+
+### With timing
+```bash
+for i in {1..5}; do
+  time curl -s "https://qr.tomaseu.pw/qr?text=timing-test-$i" --output /dev/null
+done
+```
