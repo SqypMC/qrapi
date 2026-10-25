@@ -5,12 +5,11 @@
   "installCommand": "npm install",
   "framework": null,
   "outputDirectory": "dist",
-  "functions": {
-    "src/api/**/*.ts": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 10
-    }
-  },
+  "rewrites": [
+    { "source": "/qr", "destination": "/api/qr" },
+    { "source": "/health", "destination": "/api/health" },
+    { "source": "/", "destination": "/api/index" }
+  ],
   "headers": [
     {
       "source": "/qr",
@@ -36,10 +35,5 @@
         { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
       ]
     }
-  ],
-  "rewrites": [
-    { "source": "/qr", "destination": "/api/qr" },
-    { "source": "/health", "destination": "/api/health" },
-    { "source": "/", "destination": "/api/index" }
   ]
 }
