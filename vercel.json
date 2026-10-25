@@ -4,6 +4,13 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": null,
+  "outputDirectory": "dist",
+  "functions": {
+    "src/api/**/*.ts": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 10
+    }
+  },
   "headers": [
     {
       "source": "/qr",
